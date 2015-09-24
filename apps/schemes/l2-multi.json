@@ -1,0 +1,129 @@
+{
+      "Switches": [
+            {
+                  "Name": "s1",
+                  "Controller": "tcp:0.0.0.0:6633",
+                  "Ports": [
+                        {
+                              "Cidr": "noip",
+                              "HwAddr": "08:00:27:ae:d7:a0",
+                              "Name": "h1-eth0",
+                              "NodeName": "s1",
+                              "NetNs": "",
+                              "State": "UP",
+                              "Routes": null,
+                              "PeerName": "",
+                              "Peer": {
+                                    "Name": "h1-veth0",
+                                    "IfName": "veth0",
+                                    "NodeName": "h1"
+                              }
+                        },
+                        {
+                              "Cidr": "",
+                              "HwAddr": "",
+                              "Name": "s1-patch-port4",
+                              "NodeName": "s1",
+                              "NetNs": "",
+                              "State": "UP",
+                              "Routes": null,
+                              "PeerName": "",
+                              "Peer": {
+                                    "Name": "s2-patch-port0",
+                                    "IfName": "s2-patch-port0",
+                                    "NodeName": "s2"
+                              }
+                        }                        
+                  ]
+            },
+            {
+                  "Name": "s2",
+                  "Controller": "tcp:0.0.0.0:6633",
+                  "Ports": [
+
+                        {
+                              "Cidr": "noip",
+                              "HwAddr": "08:00:27:94:f9:bb",
+                              "Name": "h2-eth0",
+                              "NodeName": "s2",
+                              "NetNs": "",
+                              "State": "UP",
+                              "Routes": null,
+                              "PeerName": "",
+                              "Peer": {
+                                    "Name": "h2-veth0",
+                                    "IfName": "veth0",
+                                    "NodeName": "h2"
+                              }
+                        },
+                        {
+                              "Cidr": "",
+                              "HwAddr": "",
+                              "Name": "s2-patch-port0",
+                              "NodeName": "s2",
+                              "NetNs": "",
+                              "State": "UP",
+                              "Routes": null,
+                              "PeerName": "",
+                              "Peer": {
+                                    "Name": "s1-patch-port4",
+                                    "IfName": "s1-patch-port4",
+                                    "NodeName": "s1"
+                              }
+                        }                        
+                  ]
+            }
+      ],
+      "Hosts": [
+            {
+                  "Cgroup": {
+                        "Name": "",
+                        "Controllers": null
+                  },
+                  "Name": "h1",
+                  "Links": [
+                        {
+                              "Cidr": "192.168.55.2/24",
+                              "HwAddr": "08:00:27:7f:89:d0",
+                              "Name": "veth0",
+                              "NodeName": "h1",
+                              "NetNs": "h1",
+                              "State": "UP",
+                              "Routes": null,
+                              "PeerName": "",
+                              "Peer": {
+                                    "Name": "s1-h1-eth0",
+                                    "IfName": "h1-eth0",
+                                    "NodeName": "s1"
+                              }
+                        }
+                  ],
+                  "Procs": null
+            },
+            {
+                  "Cgroup": {
+                        "Name": "",
+                        "Controllers": null
+                  },
+                  "Name": "h2",
+                  "Links": [
+                        {
+                              "Cidr": "192.168.55.3/24",
+                              "HwAddr": "08:00:27:48:2f:2a",
+                              "Name": "veth0",
+                              "NodeName": "h2",
+                              "NetNs": "h2",
+                              "State": "UP",
+                              "Routes": null,
+                              "PeerName": "",
+                              "Peer": {
+                                    "Name": "s2-h2-eth0",
+                                    "IfName": "h2-eth0",
+                                    "NodeName": "s2"
+                              }
+                        }
+                  ],
+                  "Procs": null
+            }
+      ]
+}

@@ -1,0 +1,95 @@
+{
+      "Switches": [
+            {
+                  "Name": "s1",
+                  "Controller": "tcp:0.0.0.0:6633",
+                  "Ports": [
+                        {
+                              "Cidr": "noip",
+                              "HwAddr": "08:00:27:95:aa:bf",
+                              "Name": "net1-h1-eth0",
+                              "NodeName": "s1",
+                              "NetNs": "",
+                              "State": "UP",
+                              "Routes": null,
+                              "PeerName": "",
+                              "Peer": {
+                                    "Name": "net1-h1-eth0",
+                                    "IfName": "eth0",
+                                    "NodeName": "net1-h1"
+                              }
+                        },
+                        {
+                              "Cidr": "noip",
+                              "HwAddr": "08:00:27:73:aa:11",
+                              "Name": "net2-h1-eth0",
+                              "NodeName": "s1",
+                              "NetNs": "",
+                              "State": "UP",
+                              "Routes": null,
+                              "PeerName": "",
+                              "Peer": {
+                                    "Name": "net2-h1-eth0",
+                                    "IfName": "eth0",
+                                    "NodeName": "net2-h1"
+                              }
+                        }
+                  ]
+            }
+      ],
+      "Hosts": [
+            {
+                  "Name": "net1-h1",
+                  
+                  "Links": [
+                        {
+                              "Cidr": "192.168.55.2/24",
+                              "HwAddr": "00:00:00:00:55:02",
+                              "Name": "eth0",
+                              "NodeName": "net1-h1",
+                              "NetNs": "net1-h1",
+                              "State": "UP",
+
+                              "Routes": [
+                                    {
+                                          "Dst": "0.0.0.0/0",
+                                          "Gw": "192.168.55.1"
+                                    }
+                              ],
+
+                              "Peer": {
+                                    "Name": "s1-net1-h1-eth0",
+                                    "IfName": "net1-h1-eth0",
+                                    "NodeName": "s1"
+                              }
+                        }
+                  ]
+            },
+            {
+                  "Name": "net2-h1",
+                  "Links": [
+                        {
+                              "Cidr": "192.168.66.2/24",
+                              "HwAddr": "00:00:00:00:66:02",
+                              "Name": "eth0",
+                              "NodeName": "net2-h1",
+                              "NetNs": "net2-h1",
+                              "State": "UP",
+                              "Routes": [
+                                    {
+                                          "Dst": "0.0.0.0/0",
+                                          "Gw": "192.168.66.1"
+                                    }
+                              ],
+
+                              "PeerName": "",
+                              "Peer": {
+                                    "Name": "s1-net2-h1-eth0",
+                                    "IfName": "net2-h1-eth0",
+                                    "NodeName": "s1"
+                              }
+                        }
+                  ]
+            }
+      ]
+}

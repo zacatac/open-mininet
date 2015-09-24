@@ -1,0 +1,231 @@
+{
+      "Switches": [
+            {
+                  "Name": "s1",
+                  "Ports": [
+                        {
+                              "Cidr": "noip",
+                              "HwAddr": "08:00:27:95:1e:bf",
+                              "Name": "net1-h1-eth0",
+                              "NodeName": "s1",
+                              "NetNs": "",
+                              "State": "UP",
+                              "Routes": null,
+                              "PeerName": "",
+                              "Peer": {
+                                    "Name": "net1-h1-eth0",
+                                    "IfName": "eth0",
+                                    "NodeName": "net1-h1"
+                              }
+                        },
+                        {
+                              "Cidr": "noip",
+                              "HwAddr": "08:00:27:73:87:11",
+                              "Name": "net2-h1-eth0",
+                              "NodeName": "s1",
+                              "NetNs": "",
+                              "State": "UP",
+                              "Routes": null,
+                              "PeerName": "",
+                              "Peer": {
+                                    "Name": "net2-h1-eth0",
+                                    "IfName": "eth0",
+                                    "NodeName": "net2-h1"
+                              }
+                        },
+                        {
+                              "Cidr": "noip",
+                              "HwAddr": "08:00:27:f6:7b:e4",
+                              "Name": "r1-eth0",
+                              "NodeName": "s1",
+                              "NetNs": "",
+                              "State": "UP",
+                              "Routes": null,
+                              "PeerName": "",
+                              "Peer": {
+                                    "Name": "r1-eth0",
+                                    "IfName": "eth0",
+                                    "NodeName": "r1"
+                              }
+                        },
+                        {
+                              "Cidr": "noip",
+                              "HwAddr": "08:00:27:62:5b:a8",
+                              "Name": "r1-eth1",
+                              "NodeName": "s1",
+                              "NetNs": "",
+                              "State": "UP",
+                              "Routes": null,
+                              "PeerName": "",
+                              "Peer": {
+                                    "Name": "r1-eth1",
+                                    "IfName": "eth1",
+                                    "NodeName": "r1"
+                              }
+                        },
+                        {
+                              "Cidr": "",
+                              "HwAddr": "",
+                              "Name": "s1-patch-port4",
+                              "NodeName": "s1",
+                              "NetNs": "",
+                              "State": "UP",
+                              "Routes": null,
+                              "PeerName": "",
+                              "Peer": {
+                                    "Name": "s2-patch-port0",
+                                    "IfName": "s2-patch-port0",
+                                    "NodeName": "s2"
+                              }
+                        }
+                  ]
+            },
+            {
+                  "Name": "s2",
+                  "Ports": [
+                        {
+                              "Cidr": "",
+                              "HwAddr": "",
+                              "Name": "s2-patch-port0",
+                              "NodeName": "s2",
+                              "NetNs": "",
+                              "State": "UP",
+                              "Routes": null,
+                              "PeerName": "",
+                              "Peer": {
+                                    "Name": "s1-patch-port4",
+                                    "IfName": "s1-patch-port4",
+                                    "NodeName": "s1"
+                              }
+                        }
+                  ]
+            }
+      ],
+      "Hosts": [
+            {
+                  "Name": "net1-h1",
+                  
+                  "Cgroup": {
+                        "Name": "net1-h1",
+                        "Controllers": [
+                              {
+                                    "Name": "cpu", 
+                                    "Params": [
+                                          {
+                                                "Key": "cfs_period_us",
+                                                "Value": 100000
+                                          },
+                                          {
+                                                "Key": "cfs_quota_us",
+                                                "Value": 1000
+                                          }
+                                    ]
+                              },
+                              {
+                                    "Name": "memory",
+                                    "Params": [
+                                          {
+                                                "Key": "limit_in_bytes",
+                                                "Value": "2G"
+                                          }
+                                    ]
+                              }
+                        ]
+                  },
+                  
+                  "Procs": [
+                        {
+                              "Command": "/bin/ping",
+                              "Args": ["-c10", "192.168.66.2"]
+                        },
+                        {
+                              "Command": "/bin/ping",
+                              "Args": ["-c20", "192.168.66.2"]
+                        }
+                  ],
+                  
+                  "Links": [
+                        {
+                              "Cidr": "192.168.55.2/24",
+                              "HwAddr": "08:00:27:a2:eb:aa",
+                              "Name": "eth0",
+                              "NodeName": "net1-h1",
+                              "NetNs": "net1-h1",
+                              "State": "UP",
+                              "Routes": [
+                                    {
+                                          "Dst": "0.0.0.0/0",
+                                          "Gw": "192.168.55.1"
+                                    }
+                              ],
+                              "PeerName": "",
+                              "Peer": {
+                                    "Name": "s1-net1-h1-eth0",
+                                    "IfName": "net1-h1-eth0",
+                                    "NodeName": "s1"
+                              }
+                        }
+                  ]
+            },
+            {
+                  "Name": "net2-h1",
+                  "Links": [
+                        {
+                              "Cidr": "192.168.66.2/24",
+                              "HwAddr": "08:00:27:37:71:80",
+                              "Name": "eth0",
+                              "NodeName": "net2-h1",
+                              "NetNs": "net2-h1",
+                              "State": "UP",
+                              "Routes": [
+                                    {
+                                          "Dst": "0.0.0.0/0",
+                                          "Gw": "192.168.66.1"
+                                    }
+                              ],
+                              "PeerName": "",
+                              "Peer": {
+                                    "Name": "s1-net2-h1-eth0",
+                                    "IfName": "net2-h1-eth0",
+                                    "NodeName": "s1"
+                              }
+                        }
+                  ]
+            },
+            {
+                  "Name": "r1",
+                  "Links": [
+                        {
+                              "Cidr": "192.168.55.1/24",
+                              "HwAddr": "08:00:27:7e:40:ff",
+                              "Name": "eth0",
+                              "NodeName": "r1",
+                              "NetNs": "r1",
+                              "State": "UP",
+                              "Routes": null,
+                              "PeerName": "",
+                              "Peer": {
+                                    "Name": "s1-r1-eth0",
+                                    "IfName": "r1-eth0",
+                                    "NodeName": "s1"
+                              }
+                        },
+                        {
+                              "Cidr": "192.168.66.1/24",
+                              "HwAddr": "08:00:27:22:e9:57",
+                              "Name": "eth1",
+                              "NodeName": "r1",
+                              "NetNs": "r1",
+                              "State": "UP",
+                              "Routes": null,
+                              "PeerName": "",
+                              "Peer": {
+                                    "Name": "s1-r1-eth1",
+                                    "IfName": "r1-eth1",
+                                    "NodeName": "s1"
+                              }
+                        }
+                  ]
+            }
+      ]
+}
